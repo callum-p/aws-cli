@@ -1,12 +1,12 @@
+ARG AWS_CLI_VERSION="1.16.166"
+
 FROM alpine:3.6
+ARG AWS_CLI_VERSION
 RUN apk -v --update add \
         python \
         py-pip \
-        groff \
-        less \
-        mailcap \
         && \
-    pip install --upgrade awscli==1.14.5 s3cmd==2.0.1 python-magic && \
+    pip install --upgrade awscli==$AWS_CLI_VERSION && \
     apk -v --purge del py-pip && \
     rm /var/cache/apk/*
 VOLUME /root/.aws
